@@ -1,10 +1,10 @@
-# plot3.R - plotting the first picture
+# plot3.R - plotting the 3rd picture
 
-#library(dplyr)
-#library(lubridate)
-#library(grDevices)
+library(dplyr)
+library(lubridate)
+library(grDevices)
 
-plot1 <- function() {
+plot3 <- function() {
     
     day1 <- dmy("01/02/2007")
     day2 <- dmy("02/02/2007")
@@ -12,8 +12,6 @@ plot1 <- function() {
     # Reading a data
     df <- read.csv2("household_power_consumption.txt", header = TRUE, sep = ";", dec = ".",
                     as.is = TRUE, na.strings = "?")
-#    df <- read.csv2("hpc_short.txt", header = TRUE, sep = ";", dec = ".",
-#                    as.is = TRUE, na.strings = "?")
     df <- tbl_df(df)
     
     # Filtering a data for 01/02/2007 and 02/02/2007 days
@@ -24,17 +22,20 @@ plot1 <- function() {
     df <- mutate(df, DT = dmy_hms(paste(Date,Time)))
     df <- select(df, DT, Global_active_power:Sub_metering_3)
 
-    # Plotting in the Viewer (now Plot 2 code here)
-    plot(df$DT, df$Sub_metering_1,
-         type = "l", xlab = "", ylab = "Energy sub metering")
-    plot(df$DT, df$Sub_metering_2,
-         type = "l", xlab = "", ylab = "Energy sub metering")
-    plot(df$DT, df$Sub_metering_3,
-         type = "l", xlab = "", ylab = "Energy sub metering")
+    # Plotting in the Plots (now Plot 3 code here)
+    localPlotting3(df)
     
-    # Saving PNG file
-#    png(file = "plot3.png", bg = "white")
-#    plot(df$DT, df$Global_active_power,
-#         type = "l", xlab = "", ylab = "Global Active Power (kilowatts)")
-#    dev.off()
+    # Plotting and saving PNG file
+    png(file = "plot3.png", bg = "white")
+    localPlotting3(df)
+    dev.off()
+}
+
+localPlotting3 <- function(df) {
+    plot(df$DT, df$Sub_metering_1,
+         type = "l", xlab = "", ylab = "Energy sub metering", col = "black")
+    lines(df$DT, df$Sub_metering_2, col = "red")
+    lines(df$DT, df$Sub_metering_3, col = "blue")
+    legend("topright", legend = c("Sub_metering_1","Sub_metering_1","Sub_metering_1"),
+           col = c("black", "red", "blue"), lty = c(1, 1, 1), merge = TRUE)
 }
