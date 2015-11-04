@@ -4,6 +4,7 @@ library(dplyr)
 library(lubridate)
 library(grDevices)
 
+# plot2() - main function
 plot2 <- function() {
     
     day1 <- dmy("01/02/2007")
@@ -31,6 +32,7 @@ plot2 <- function() {
     dev.off()
 }
 
+# localPlotting2(dataframe) - shared function for plotting only
 localPlotting2 <- function(df) {
     plot(df$DT, df$Global_active_power,
          type = "l", xlab = "", ylab = "Global Active Power (kilowatts)")

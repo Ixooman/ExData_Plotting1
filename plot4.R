@@ -4,6 +4,7 @@ library(dplyr)
 library(lubridate)
 library(grDevices)
 
+# plot4() - main function
 plot4 <- function() {
     
     day1 <- dmy("01/02/2007")
@@ -30,9 +31,11 @@ plot4 <- function() {
     dev.off()
 }
 
+# localPlotting4(dataframe) - shared function for plotting only
 localPlotting4 <- function(df) {
     # Plotting 4 times
     prevPar <- par(mfrow=c(2,2))
+    
     # 1st
     plot(df$DT, df$Global_active_power,
          type = "l", xlab = "", ylab = "Global Active Power (kilowatts)")

@@ -4,6 +4,7 @@ library(dplyr)
 library(lubridate)
 library(grDevices)
 
+# plot3() - main function
 plot3 <- function() {
     
     day1 <- dmy("01/02/2007")
@@ -31,6 +32,7 @@ plot3 <- function() {
     dev.off()
 }
 
+# localPlotting3(dataframe) - shared function for plotting only
 localPlotting3 <- function(df) {
     plot(df$DT, df$Sub_metering_1,
          type = "l", xlab = "", ylab = "Energy sub metering", col = "black")

@@ -4,6 +4,7 @@ library(dplyr)
 library(lubridate)
 library(grDevices)
 
+# plot1() - main function
 plot1 <- function() {
     
     day1 <- dmy("01/02/2007")
@@ -29,9 +30,9 @@ plot1 <- function() {
     png(file = "plot1.png", bg = "white")
     localPlotting1(df)
     dev.off()
-    
 }
 
+# localPlotting1(dataframe) - shared function for plotting only
 localPlotting1 <- function(df) {
     hist(df$Global_active_power, col = "red",
          main = "Global Actice Power", xlab = "Global Active Power (kilowatts)")
